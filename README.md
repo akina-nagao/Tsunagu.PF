@@ -23,7 +23,7 @@
 ## 設計書
 <!--テーマを設定・提出する時点では不要です-->
 
-##　実装機能リスト
+## 実装機能リスト
 https://docs.google.com/spreadsheets/d/1szE0dqydiVMHFawHtm2Ldy25vUpBW7WKBY4OI-pckbs/edit#gid=1898975908
 ​
 ## 開発環境
