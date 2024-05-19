@@ -1,0 +1,6 @@
+<h1>Public::Home#top</h1>
+<p>Find me in app/views/public/home/top.html.erb</p>
+
+<% if current_customer %>
+  <%= link_to "logout", destroy_customer_session_path, method: :delete %>
+<% end %>
