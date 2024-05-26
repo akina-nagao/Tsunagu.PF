@@ -1,0 +1,2 @@
+module Customer::CommentsHelper
+end

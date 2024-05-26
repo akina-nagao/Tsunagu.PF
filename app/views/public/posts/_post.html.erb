@@ -1,0 +1,8 @@
+<% posts.each do |post| %>
+  <div>
+    <p><%= image_tag 'sample-author1.jpg' %></p>
+    <p>活動内容：<%= post.title %><p>
+    <p>活動内容：<%= post.body %></p>
+    <p>ニックネーム：<%= post.customer.nickname %></p>
+  </div>
+<% end %>

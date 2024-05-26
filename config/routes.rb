@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
   
-  namespace :public do
-    get 'posts/new'
-    get 'posts/index'
-    get 'posts/show'
-    get 'posts/edit'
-  end
   devise_for :admins, path: 'admin', controllers: {
     sessions: 'admin/admins/sessions'
   }
@@ -21,6 +15,10 @@ Rails.application.routes.draw do
   
   scope module: :public do
     root 'home#top'
+    resources :posts, only: [:new, :create, :index, :show, :destroy] do
+      resource :favorites, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

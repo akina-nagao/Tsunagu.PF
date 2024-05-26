@@ -1,2 +1,6 @@
 <h1>Public::Posts#show</h1>
 <p>Find me in app/views/public/posts/show.html.erb</p>
+
+<%= @post.inspect %>
+
+<%= render "public/favorites/favorite_button", post: @post %>
