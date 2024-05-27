@@ -1,14 +1,20 @@
 class Customer::CommentsController < ApplicationController
   def create
     post = Post.find(params[:post_id])
-    current_customer.comment(post)
-    redirect_to post_path(post)
+    comment = current_customer.comments.new(comment_params)
+    comment.post_id = post.id
+    comment.save
+    redirect_to posts_path
   end
   
   def destroy
-    post = Post.find(params[:post_id])
-    current_customer.comments(post)
-    redirect_back(fallback_location: root_url)
+    comment.find(params[:id]).destroy
+    redirect_to post_path(params[:post_id])
+  end
+  
+  private
+  def comment_params
+    params.require(:comment).permit(:comment)
   end
   
 end
