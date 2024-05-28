@@ -1,14 +1,17 @@
-<div>
-  <p>コメント件数：<%= @post_image.post_comments.count %></p>
-  <% @post_image.post_comments.each do |post_comment| %>
-    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
-    <%= post_comment.user.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+<div class="mt-4">
+  <p>コメント件数：<%= post.comments.count %></p>
+  <% post.comments.each do |comment| %>
+    <%= comment.customer.nickname %></br>
+    <%= comment.created_at.strftime('%Y/%M/%D') %></br><%= comment.comment %>
+    <% if comment.customer == current_customer %>
+      <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
+    <% end %>
   <% end %>
 </div>
-<div>
-  <%= form_with model: [@post_image, @post_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
+<div class="mt-4">
+  <%= form_with model: [post, comment] do |f| %>
+    <%= render "layouts/error_messages", model: f.object %>
+    <%= f.text_area :comment, size: "50x5" , placeholder: "コメントをここに" %>
+    <%= f.submit "送信する", class: "btn btn-lg btn-primary " %>
   <% end %>
 </div>

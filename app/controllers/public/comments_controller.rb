@@ -4,10 +4,10 @@ class Public::CommentsController < ApplicationController
     @comment = current_customer.comments.new(comment_params)
     @comment.post_id = @post.id
     if @comment.save
-      flash[:notice] = "success"
+      flash[:notice] = "投稿成功！！"
       redirect_to post_path(@post)
     else
-      flash.now[:alert] = "failed"
+      flash.now[:alert] = "投稿失敗？！"
       render "public/posts/show"
     end
   end

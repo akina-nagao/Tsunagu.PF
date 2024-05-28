@@ -1,5 +1,5 @@
 <% @posts.each do |post| %>
-  <div>
+  <div class="mt-">
     <%= link_to post_path(post.id) do %>
       <p><%= image_tag 'sample-author1.jpg' %></p>
     <% end %>
@@ -9,5 +9,6 @@
   </div>
   
   <%= link_to "削除", post_path(post), method: :delete %>
+  
   <%= render "public/favorites/favorite_button", post: post %>
 <% end %>
