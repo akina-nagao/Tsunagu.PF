@@ -4,13 +4,14 @@
       <h4 class="text-dark bg-light p-4 mb-0"></h4>
       <div class="form-body p-4">
         <%= form_with model: @post do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
           <div class="input-group mb-3 mt-4">
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>
             </div>
             <%= f.text_field :title, class: "form-control", placeholder: "活動名" %>
           </div>
-            <%= f.text_area :bode, class: "form-control", rows: "3", placeholder: "活動内容" %>
+            <%= f.text_area :body, class: "form-control", rows: "4", placeholder: "活動内容" %>
             <hr>
             <%= f.file_field :image, accept: "image/*", class: "w-100" %>
             <%= f.submit '投稿', class: "btn btn-lg btn-block btn-primary mt-4" %>

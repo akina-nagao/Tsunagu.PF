@@ -1,15 +1,23 @@
-class Customer::CommentsController < ApplicationController
+class Public::CommentsController < ApplicationController
   def create
-    post = Post.find(params[:post_id])
-    comment = current_customer.comments.new(comment_params)
-    comment.post_id = post.id
-    comment.save
-    redirect_to posts_path
+    @post = Post.find(params[:post_id])
+    @comment = current_customer.comments.new(comment_params)
+    @comment.post_id = @post.id
+    if @comment.save
+      flash[:notice] = "success"
+      redirect_to post_path(@post)
+    else
+      flash.now[:alert] = "failed"
+      render "public/posts/show"
+    end
   end
   
   def destroy
-    comment.find(params[:id]).destroy
-    redirect_to post_path(params[:post_id])
+    @post = Post.find(params[:post_id])
+    @comment = Comment.find_by_id(params[:id])
+    @comment.destroy if @comment
+    flash[:notice] = "success"
+    redirect_to post_path(@post)
   end
   
   private

@@ -12,7 +12,7 @@
 <div>
   <p>コメント件数：<%= @post.comments.count %></p>
   <% @post.comments.each do |comment| %>
-    <%= comments.nickname %>
+    <%= comment.customer.nickname %>
     <%= comment.created_at.strftime('%Y/%M/%D') %><%= comment.comment %>
     <% if comment.customer == current_customer %>
       <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete %>
@@ -22,12 +22,10 @@
 
 <div>
   <%= form_with model: [@post, @comment] do |f| %>
+    <%= render "layouts/error_messages", model: f.object %>
     <%= f.text_area :comment, size: "50x5" , placeholder: "コメントをここに" %>
     <%= f.submit "送信する", class: "btn btn-lg btn-primary " %>
   <% end %>
 </div>
 
-
-<%= @post.inspect %>
-/
 <%= render "public/favorites/favorite_button", post: @post %>

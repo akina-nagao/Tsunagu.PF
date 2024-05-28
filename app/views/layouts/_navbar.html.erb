@@ -12,7 +12,6 @@
         <%= link_to "活動一覧", posts_path, class: "nav-item nav-link" %>
       <% elsif current_admin %>
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-item nav-link" %>
-      
       <% else %>
         <%= link_to "ログイン", new_customer_session_path, class: "nav-item nav-link" %>
       <% end %>

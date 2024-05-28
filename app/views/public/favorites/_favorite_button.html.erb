@@ -1,5 +1,5 @@
 <% if current_customer.favorite?(post) %>
-  <%= link_to "unfavorite", post_favorites_path(post), method: :delete %>
+  <%= link_to "♡いいね", post_favorites_path(post), method: :delete %>
 <% else %>
-  <%= link_to "favorite", post_favorites_path(post), method: :post %>
+  <%= link_to "♥いいね", post_favorites_path(post), method: :post %>
 <% end %>

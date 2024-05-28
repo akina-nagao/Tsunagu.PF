@@ -6,14 +6,19 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
-    @post.save
-    redirect_to posts_path
+    if @post.save
+      flash[:notice] = "success"
+      redirect_to posts_path
+    else
+      flash.now[:alert] = "failed"
+      render :new
+    end
   end
 
   def index
     @posts = Post.all
   end
-  
+
   def update
     @post = Post.find(params[:id])
     @post.customer_id = current_customer.id
@@ -32,16 +37,16 @@ class Public::PostsController < ApplicationController
 
   def edit
   end
-  
+
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
   end
-  
+
   private
   def post_params
     params.require(:post).permit(:title, :body, :image)
   end
-  
+
 end
