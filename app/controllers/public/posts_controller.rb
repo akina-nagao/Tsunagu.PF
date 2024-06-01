@@ -5,6 +5,24 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    tag_names = params[:tag_name].split(",")
+    tags = tag_names.map { |tag_name| Tag.find_or_initialize_by(name: tag_name) }
+    tag.each do |tag|
+      if tag.invalid?
+        @tag_name = params[:tag_name]
+        @post.errors.add(:tags, tag.errors.full_messages.join("\n"))
+        render render :new, status: :unprocessable_entity
+      end
+    end
+    
+    @post.tags = tags
+    if @post.save
+      redirect_to @post, notice: "Post was successfully created."
+    else
+     @tag_name = params[:tag_name]
+      render :new, status: :unprocessable_entity
+    end
+    
     @post.customer_id = current_customer.id
     if @post.save
       flash[:notice] = "success"

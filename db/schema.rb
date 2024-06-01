@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_05_26_060815) do
+ActiveRecord::Schema.define(version: 2024_06_01_113311) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -91,6 +91,16 @@ ActiveRecord::Schema.define(version: 2024_05_26_060815) do
     t.index ["post_id"], name: "index_favorites_on_post_id"
   end
 
+  create_table "post_tags", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "Tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["Tag_id"], name: "index_post_tags_on_Tag_id"
+    t.index ["post_id", "Tag_id"], name: "index_post_tags_on_post_id_and_tag_id", unique: true
+    t.index ["post_id"], name: "index_post_tags_on_post_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.string "title"
@@ -100,10 +110,18 @@ ActiveRecord::Schema.define(version: 2024_05_26_060815) do
     t.index ["customer_id"], name: "index_posts_on_customer_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "customers"
   add_foreign_key "comments", "posts"
   add_foreign_key "favorites", "customers"
   add_foreign_key "favorites", "posts"
+  add_foreign_key "post_tags", "Tags"
 end

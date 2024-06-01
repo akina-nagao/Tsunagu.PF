@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :tags
   devise_for :admins, path: 'admin', controllers: {
     sessions: 'admin/admins/sessions'
   }
