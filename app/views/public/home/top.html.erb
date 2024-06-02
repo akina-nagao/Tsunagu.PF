@@ -1,9 +1,11 @@
 <h1>Home#Public</h1>
 <p>Find me in app/views/public/home/top.html.erb</p>
 
-<h1>今がつながるとき</h1>
+<div class="container">
+  <h1>今がつながるとき</h1>
 
-<% if current_customer %>
-  <%= link_to "logout", destroy_customer_session_path, method: :delete %>
-<% end %>
-
+  <% if current_customer %>
+    <%= link_to "logout", destroy_customer_session_path, method: :delete %>
+  <% end %>
+  
+</div>

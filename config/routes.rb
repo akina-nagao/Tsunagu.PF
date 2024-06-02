@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
-  
+
   resources :tags
   devise_for :admins, path: 'admin', controllers: {
     sessions: 'admin/admins/sessions'
   }
-  
+
   devise_for :customers, controllers: {
     sessions: 'public/customers/sessions',
     registrations: 'public/customers/registrations'
   }
-  
+
   namespace :admin do
     root 'home#top'
   end
-  
+
   scope module: :public do
     root 'home#top'
     resources :posts, only: [:new, :create, :index, :show, :destroy] do

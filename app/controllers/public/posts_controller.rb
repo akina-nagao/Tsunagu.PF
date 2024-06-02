@@ -1,6 +1,7 @@
 class Public::PostsController < ApplicationController
   def new
     @post = Post.new
+    @tag = Tag.new
   end
 
   def create
