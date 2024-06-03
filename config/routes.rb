@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :tags
+  
   devise_for :admins, path: 'admin', controllers: {
     sessions: 'admin/admins/sessions'
   }
@@ -16,10 +16,12 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root 'home#top'
-    resources :posts, only: [:new, :create, :index, :show, :destroy] do
+    resources :posts do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
+      resource :tags, only: [:create]
     end
+    resources :tags
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

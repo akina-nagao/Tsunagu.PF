@@ -11,14 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-  
   <div>
-    <%= label_tag :tag_name, "タグ（,区切りで入力してください）", style: "display: block" %>
-    <%= text_field_tag :tag_name, tag_name %>
+    <%= form.label :tag_name, "タグ（,区切りで入力してください）", style: "display: block" %>
+    <%= form.text_field :tag_name %>
   </div>
 
   <div class="actions">

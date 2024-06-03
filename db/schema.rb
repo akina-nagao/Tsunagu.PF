@@ -92,13 +92,13 @@ ActiveRecord::Schema.define(version: 2024_06_01_113311) do
   end
 
   create_table "post_tags", force: :cascade do |t|
-    t.integer "post_id"
-    t.integer "Tag_id", null: false
+    t.integer "post_id", null: false
+    t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["Tag_id"], name: "index_post_tags_on_Tag_id"
-    t.index ["post_id", "Tag_id"], name: "index_post_tags_on_post_id_and_tag_id", unique: true
+    t.index ["post_id", "tag_id"], name: "index_post_tags_on_post_id_and_tag_id", unique: true
     t.index ["post_id"], name: "index_post_tags_on_post_id"
+    t.index ["tag_id"], name: "index_post_tags_on_tag_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -123,5 +123,6 @@ ActiveRecord::Schema.define(version: 2024_06_01_113311) do
   add_foreign_key "comments", "posts"
   add_foreign_key "favorites", "customers"
   add_foreign_key "favorites", "posts"
-  add_foreign_key "post_tags", "Tags"
+  add_foreign_key "post_tags", "posts"
+  add_foreign_key "post_tags", "tags"
 end
