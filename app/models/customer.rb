@@ -5,10 +5,10 @@ class Customer < ApplicationRecord
          #:recoverable, :rememberable
          
   has_many :posts, dependent: :destroy
-  
   has_many :favorites, dependent: :destroy
   has_many :favorite_posts, through: :favorites, source: :post
   has_many :comments, dependent: :destroy
+  has_many :post_members, dependent: :destroy
   
   def favorite(post)
     self.favorites.find_or_create_by(post_id: post.id)

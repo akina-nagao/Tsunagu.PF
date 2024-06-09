@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
       resource :tags, only: [:create]
+      #resource :post_membersbers, only: [:create, :destroy]
     end
     resources :tags
   end

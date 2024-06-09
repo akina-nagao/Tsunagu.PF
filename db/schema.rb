@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_06_01_113311) do
+ActiveRecord::Schema.define(version: 2024_06_09_120512) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -91,6 +91,16 @@ ActiveRecord::Schema.define(version: 2024_06_01_113311) do
     t.index ["post_id"], name: "index_favorites_on_post_id"
   end
 
+  create_table "post_members", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "post_id", null: false
+    t.boolean "is_join", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_post_members_on_customer_id"
+    t.index ["post_id"], name: "index_post_members_on_post_id"
+  end
+
   create_table "post_tags", force: :cascade do |t|
     t.integer "post_id", null: false
     t.integer "tag_id", null: false
@@ -123,6 +133,8 @@ ActiveRecord::Schema.define(version: 2024_06_01_113311) do
   add_foreign_key "comments", "posts"
   add_foreign_key "favorites", "customers"
   add_foreign_key "favorites", "posts"
+  add_foreign_key "post_members", "customers"
+  add_foreign_key "post_members", "posts"
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
 end
