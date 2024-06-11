@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root 'home#top'
+    get 'about' => "home#about", as: "about"
     get 'mypage', to: "home#mypage", as: "mypage"
     resources :posts do
       resource :favorites, only: [:create, :destroy]
