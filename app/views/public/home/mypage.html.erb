@@ -1,0 +1,6 @@
+<% @post_members.each do |post_member| %>
+  customer_id:<%= post_member.customer.id %>:
+  <%= link_to "許可する", post_member_path(post_member, status: :permitted), method: :patch  %><br>
+  <%= link_to "NG", post_member_path(post_member, status: :excluded), method: :patch  %><br>
+  <%= post_member.post.title %><br><hr>
+<% end %>

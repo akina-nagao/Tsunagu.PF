@@ -14,5 +14,8 @@
 |
 <%= link_to "戻る", posts_path %>
 
+<%= render "public/post_members/post_member_button", post: @post %>
+
+
 <%= render "public/comments/comments", post: @post, comment: @comment%>
 

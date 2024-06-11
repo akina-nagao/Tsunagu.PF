@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2024_06_09_120512) do
   create_table "post_members", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.integer "post_id", null: false
-    t.boolean "is_join", default: true, null: false
+    t.integer "status", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_post_members_on_customer_id"

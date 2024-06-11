@@ -1,0 +1,7 @@
+ja:
+  enums:
+    post_member:
+      status:
+        applying: 申請中
+        permitted: 許可済
+        excluded: ＮＧ

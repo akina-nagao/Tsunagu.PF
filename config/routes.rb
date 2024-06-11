@@ -16,13 +16,15 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root 'home#top'
+    get 'mypage', to: "home#mypage", as: "mypage"
     resources :posts do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
       resource :tags, only: [:create]
-      #resource :post_membersbers, only: [:create, :destroy]
+      resource :post_members, only: [:create, :destroy]
     end
     resources :tags
+    resources :post_members, only: [:update]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
