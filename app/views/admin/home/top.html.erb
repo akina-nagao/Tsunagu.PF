@@ -1,6 +1,8 @@
 <h1>Admin::Home#top</h1>
 <p>Find me in app/views/admin/home/top.html.erb</p>
 
-<% if current_admin %>
-  <%= link_to "logout", destroy_admin_session_path, method: :delete %>
-<% end %>
+
+  <%= link_to "admin_logout", destroy_admin_session_path, method: :delete %>
+  <%= link_to "posts", admin_posts_path %>
+  <%= link_to "customers", admin_customers_path %>
+

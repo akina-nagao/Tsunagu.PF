@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  
   devise_for :admins, path: 'admin', controllers: {
     sessions: 'admin/admins/sessions'
   }
@@ -11,7 +10,9 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    root 'home#top'
+    root 'posts#index'
+    resources :customers, only: [:index, :destroy]
+    resources :posts, only: [:index, :destroy]
   end
 
   scope module: :public do
@@ -26,7 +27,8 @@ Rails.application.routes.draw do
     end
     resources :tags
     resources :post_members, only: [:update, :index]
-    get "/search", to: "searches#search"
+
   end
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

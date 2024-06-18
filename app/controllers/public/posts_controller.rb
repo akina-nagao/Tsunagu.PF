@@ -1,4 +1,6 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_customer!, only: [:new, :create, :edit, :update, :destroy]
+  
   def new
     @post = Post.new
     @tag = Tag.new
@@ -36,6 +38,10 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    if params[:keyword].present?
+      @posts = @posts.where('title LIKE ?', "%#{params[:keyword]}%")
+              .or(@posts.where('body LIKE ?', "%#{params[:keyword]}%"))
+    end
   end
 
   def show
@@ -64,14 +70,6 @@ class Public::PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  #def search
-  #  if params[:keyword].present?
-  #    @posts = Post.where('caption LIKE ?', "%#{params[:keyword]}%")
-  #    @keyword = params[:keyword]
-  #  else
-  #    @posts = Post.all
-  #  end
-  #end
 
   private
   def post_params

@@ -10,9 +10,12 @@
     <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
   </div>
   
-  <%= link_to "削除", post_path(post), method: :delete %>
   
-  <%= render "public/favorites/favorite_button", post: post %>
-  <%= render "public/post_members/post_member_button", post: post %>
+  
+  <% if current_customer %>
+    <%= link_to "削除", post_path(post), method: :delete %>
+    <%= render "public/favorites/favorite_button", post: post %>
+    <%= render "public/post_members/post_member_button", post: post %>
+  <% end %>
   
 <% end %>

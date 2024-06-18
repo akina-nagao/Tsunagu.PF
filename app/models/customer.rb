@@ -51,4 +51,5 @@ class Customer < ApplicationRecord
   def applying_post_members
     self.post_members.where(status: :applying)
   end
+  
 end
