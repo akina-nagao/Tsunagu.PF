@@ -64,6 +64,15 @@ class Public::PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  #def search
+  #  if params[:keyword].present?
+  #    @posts = Post.where('caption LIKE ?', "%#{params[:keyword]}%")
+  #    @keyword = params[:keyword]
+  #  else
+  #    @posts = Post.all
+  #  end
+  #end
+
   private
   def post_params
     params.require(:post).permit(:title, :body, :image, :tag_name)

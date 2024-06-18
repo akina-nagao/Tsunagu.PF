@@ -11,6 +11,10 @@ class Public::PostMembersController < ApplicationController
     redirect_back(fallback_location: root_url)
   end
   
+  def index
+    @post_members = PostMember.all
+  end
+  
   def destroy
     post = Post.find(params[:post_id])
     current_customer.detach_member(post)

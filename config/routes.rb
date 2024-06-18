@@ -25,7 +25,8 @@ Rails.application.routes.draw do
       resource :post_members, only: [:create, :destroy]
     end
     resources :tags
-    resources :post_members, only: [:update]
+    resources :post_members, only: [:update, :index]
+    get "/search", to: "searches#search"
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

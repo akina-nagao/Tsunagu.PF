@@ -1,5 +1,5 @@
 <% if current_customer.favorite?(post) %>
-  <%= link_to "♡いいね", post_favorites_path(post), method: :delete %>
+  <%= link_to "♡いいね", post_favorites_path(post), method: :delete, class: "btn btn-outline-danger" %>
 <% else %>
-  <%= link_to "♥いいね", post_favorites_path(post), method: :post %>
+  <%= link_to "♥いいね", post_favorites_path(post), method: :post, class: "btn btn-danger" %>
 <% end %>

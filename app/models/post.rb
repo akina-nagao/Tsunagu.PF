@@ -60,4 +60,12 @@ class Post < ApplicationRecord
   def to_tag_name
     self.tag_name = self.tags.pluck(:name).join(", ")
   end
+  
+  #def self.search(search)
+  #  if search != ""
+  #    Post.where('title LIKE(?)', "%#{search}%")
+  #  else
+  #    Post.all
+  #  end
+  #end
 end

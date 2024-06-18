@@ -1,7 +1,7 @@
 <% if current_customer.is_permitted?(post) %>
   <%= link_to "退出する", post_post_members_path(post), method: :delete %>
 <% elsif current_customer.is_applying?(post) %>
-  shinseichuu
+  申請中
 <% elsif !current_customer.is_excluded?(post) %>
   <%= link_to "参加する", post_post_members_path(post), method: :post %>
 <% end %>
