@@ -9,13 +9,14 @@
   <% end %>
 </div>
 
-
-<%= render "public/favorites/favorite_button", post: @post %>
-|
-<%= link_to "戻る", posts_path, class: "btn btn-outline-secondary" %>
-
-<%= render "public/post_members/post_member_button", post: @post %>
-
-
-<%= render "public/comments/comments", post: @post, comment: @comment%>
+<% if current_customer %>
+  <%= render "public/favorites/favorite_button", post: @post %>
+  |
+  <%= link_to "戻る", posts_path, class: "btn btn-outline-secondary" %>
+  
+  <%= render "public/post_members/post_member_button", post: @post %>
+  
+  
+  <%= render "public/comments/comments", post: @post, comment: @comment%>
+<% end %>
 

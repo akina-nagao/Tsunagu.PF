@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   devise_for :admins, path: 'admin', controllers: {
     sessions: 'admin/admins/sessions'
   }
@@ -27,7 +26,7 @@ Rails.application.routes.draw do
     end
     resources :tags
     resources :post_members, only: [:update, :index]
-
+    resources :customers, only: [:show, :edit, :update]
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

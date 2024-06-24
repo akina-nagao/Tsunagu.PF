@@ -10,6 +10,7 @@ class Customer < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :post_members, dependent: :destroy
   has_many :member_posts, through: :post_members, source: :post
+  has_one_attached :profile_image
   
   def favorite(post)
     self.favorites.find_or_create_by(post_id: post.id)
@@ -50,6 +51,14 @@ class Customer < ApplicationRecord
   
   def applying_post_members
     self.post_members.where(status: :applying)
+  end
+  
+  def get_profile_image(width, height)
+    unless profile_image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    profile_image.variant(resize_to_limit: [width, height]).processed
   end
   
 end

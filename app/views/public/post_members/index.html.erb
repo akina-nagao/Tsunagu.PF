@@ -1,1 +1,6 @@
 <h1>許可・NG一覧</h1>
+  <% @post_members.each do |post_member| %>
+    customer_id：<%= post_member.customer.id %>：
+    <%= post_member.customer.nickname %><br><hr>
+  <% end %>
+  <%= link_to "戻る", mypage_path %>

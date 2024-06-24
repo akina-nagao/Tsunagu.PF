@@ -9,4 +9,7 @@ class Public::HomeController < ApplicationController
     @customer = current_customer
     @post_members = @customer.applying_post_members
   end
+  
+  
+    
 end

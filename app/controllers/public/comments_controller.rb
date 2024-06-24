@@ -1,4 +1,6 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_customer!, only: [:create, :destroy]
+  
   def create
     @post = Post.find(params[:post_id])
     @comment = current_customer.comments.new(comment_params)
@@ -11,7 +13,7 @@ class Public::CommentsController < ApplicationController
       render "public/posts/show"
     end
   end
-  
+
   def destroy
     @post = Post.find(params[:post_id])
     @comment = Comment.find_by_id(params[:id])
@@ -19,10 +21,10 @@ class Public::CommentsController < ApplicationController
     flash[:notice] = "success"
     redirect_to post_path(@post)
   end
-  
+
   private
   def comment_params
     params.require(:comment).permit(:comment)
   end
-  
+
 end

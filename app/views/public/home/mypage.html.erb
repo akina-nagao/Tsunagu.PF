@@ -5,6 +5,10 @@
   |
   <%= link_to "NG", post_member_path(post_member, status: :excluded), method: :patch, class: "btn btn-lg btn-danger" %>
   |
-  <%= post_member.post.title %><br><hr>
-  <%= link_to "許可・NG者一覧", post_members_path(@post_member) %><br>
+  <%= post_member.post.title %><br>
 <% end %>
+<hr>
+<%= link_to "許可・NG者一覧", post_members_path(@post_member) %><br>
+
+<%= link_to "プロフィール編集", edit_customer_path(@customer) %><br>
+<%= link_to "活動一覧へ", posts_path %>
