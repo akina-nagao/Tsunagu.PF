@@ -7,7 +7,7 @@
     <div class="navbar-nav">
       <% if current_customer %>
         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-item nav-link" %>
-        <%= link_to "ホーム", root_path, class: "nav-item nav-link" %>
+
         <%= link_to "マイページ", mypage_path, class: "nav-item nav-link" %>
         <%= link_to "投稿", new_post_path, class: "nav-item nav-link" %>
         <%= link_to "活動一覧", posts_path, class: "nav-item nav-link" %>

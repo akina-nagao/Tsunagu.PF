@@ -12,7 +12,10 @@ class Public::PostMembersController < ApplicationController
   end
   
   def index
-    @post_members = PostMember.all
+
+    post_members = PostMember.includes(:post, :customer).where('posts.customer_id': current_customer.id)
+    @post_members = post_members.where(status: :permitted).order(post_id: :asc)
+    @ng_post_members = post_members.where(status: :excluded).order(post_id: :asc)
   end
   
   def destroy

@@ -1,4 +1,7 @@
 <h1>マイページ</h1>
+<%= image_tag @customer.get_profile_image(100,100) %>
+ニックネーム：<%= @customer.nickname %>
+
 <% @post_members.each do |post_member| %>
   customer_id：<%= post_member.customer.id %>：
   <%= link_to "許可する", post_member_path(post_member, status: :permitted), method: :patch, class: "btn btn-lg btn-primary"  %>
@@ -9,6 +12,4 @@
 <% end %>
 <hr>
 <%= link_to "許可・NG者一覧", post_members_path(@post_member) %><br>
-
-<%= link_to "プロフィール編集", edit_customer_path(@customer) %><br>
-<%= link_to "活動一覧へ", posts_path %>
+<%= link_to "マイページ編集", edit_customer_path(@customer.id) %><br>

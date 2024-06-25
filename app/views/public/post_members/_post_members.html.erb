@@ -1,0 +1,9 @@
+  <% post_members.each do |post_member| %>
+    <% post = post_member.post %>
+    post: <%= post.id %>:<%= post.title %><br>
+    customer_id：<%= post_member.customer.id %>：
+    <%= post_member.customer.nickname %><br>
+    id: <%= post_member.id %>
+    <hr>
+  <% end %>
+  <%= link_to "戻る", mypage_path %>

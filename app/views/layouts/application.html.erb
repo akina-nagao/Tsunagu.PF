@@ -13,9 +13,9 @@
   <body>
     <header>
       <%= render "layouts/navbar" %>
+      <%= yield(:bg_area) %>
     </header>
     <main class="container">
-
       <%= render "layouts/flash_messages" %>
       <%= yield %>
     </main>

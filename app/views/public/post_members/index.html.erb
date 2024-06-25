@@ -1,6 +1,19 @@
 <h1>許可・NG一覧</h1>
-  <% @post_members.each do |post_member| %>
-    customer_id：<%= post_member.customer.id %>：
-    <%= post_member.customer.nickname %><br><hr>
-  <% end %>
-  <%= link_to "戻る", mypage_path %>
+
+
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">許可</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">NG</a>
+  </li>
+</ul>
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
+    <%= render "public/post_members/post_members", post_members: @post_members %>
+  </div>
+  <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
+    <%= render "public/post_members/post_members", post_members: @ng_post_members %>
+  </div>
+</div>

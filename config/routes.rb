@@ -25,8 +25,8 @@ Rails.application.routes.draw do
       resource :post_members, only: [:create, :destroy]
     end
     resources :tags
-    resources :post_members, only: [:update, :index]
-    resources :customers, only: [:show, :edit, :update]
+    resources :post_members, only: [:update, :index, :destroy]
+    resources :customers, only: [:show, :edit, :update, :destroy]
   end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
