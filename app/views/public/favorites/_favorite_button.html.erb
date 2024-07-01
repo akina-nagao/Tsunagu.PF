@@ -1,5 +1,9 @@
 <% if current_customer.favorite?(post) %>
-  <%= link_to "♡いいね", post_favorites_path(post), method: :delete, class: "btn btn-outline-danger" %>
+  <%= link_to post_favorites_path(post), method: :delete do %>
+    <i class="far fa-heart btn btn-danger">いいね</i>
+  <% end %>
 <% else %>
-  <%= link_to "♥いいね", post_favorites_path(post), method: :post, class: "btn btn-danger" %>
+  <%= link_to post_favorites_path(post), method: :post do %>
+    <i class="fas fa-heart btn btn-outline-danger">いいね</i>
+  <% end %>
 <% end %>

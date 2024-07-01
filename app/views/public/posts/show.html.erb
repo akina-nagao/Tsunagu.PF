@@ -1,22 +1,20 @@
-<h1>Public::Posts#show</h1>
+<h1 class="mt-2">活動詳細</h1>
 
 <div>
   <p><%= image_tag 'sample-author1.jpg' %></p>
   <p>活動名：<%= @post.title %><p>
   <p>活動内容：<%= @post.body %></p>
-  <% if @post.customer == current_customer %>
-    <%= link_to "削除", posts_path(@post), method: :delete %>
-  <% end %>
 </div>
 
 <% if current_customer %>
   <%= render "public/favorites/favorite_button", post: @post %>
-  |
-  <%= link_to "戻る", posts_path, class: "btn btn-outline-secondary" %>
-  
   <%= render "public/post_members/post_member_button", post: @post %>
-  
-  
+  <%= link_to "活動一覧に戻る", posts_path, class: "btn btn-outline-secondary" %><br>
+  <% if @post.customer == current_customer %>
+    <%= link_to "編集する", edit_post_path(@post), class: "btn btn-outline-secondary mt-2"%>
+    <%= link_to "投稿を削除する", posts_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-secondary mt-2" %>
+  <% end %>
   <%= render "public/comments/comments", post: @post, comment: @comment%>
+  
 <% end %>
 

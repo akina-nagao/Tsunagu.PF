@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     root 'home#top'
     get 'about' => "home#about", as: "about"
     get 'mypage', to: "home#mypage", as: "mypage"
+    post '/guests/guest_sign_in', to: 'guests#guest_sign_in', as: "guest_sign_in"
     resources :posts do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
@@ -28,6 +29,6 @@ Rails.application.routes.draw do
     resources :post_members, only: [:update, :index, :destroy]
     resources :customers, only: [:show, :edit, :update, :destroy]
   end
-  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

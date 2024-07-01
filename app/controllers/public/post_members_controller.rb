@@ -7,12 +7,11 @@ class Public::PostMembersController < ApplicationController
   def create
     post = Post.find(params[:post_id])
     current_customer.join_member(post)
-    flash[:notice] = "グループに参加しました"
+    flash[:notice] = "グループへ申請しました"
     redirect_back(fallback_location: root_url)
   end
   
   def index
-
     post_members = PostMember.includes(:post, :customer).where('posts.customer_id': current_customer.id)
     @post_members = post_members.where(status: :permitted).order(post_id: :asc)
     @ng_post_members = post_members.where(status: :excluded).order(post_id: :asc)
@@ -21,7 +20,7 @@ class Public::PostMembersController < ApplicationController
   def destroy
     post = Post.find(params[:post_id])
     current_customer.detach_member(post)
-    flash[:notice] = "グループから退出しました"
+    flash[:notice] = "グループから退会しました"
     redirect_back(fallback_location: root_url)
   end
   

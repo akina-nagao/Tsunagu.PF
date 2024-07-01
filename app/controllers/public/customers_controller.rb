@@ -23,6 +23,22 @@ class Public::CustomersController < ApplicationController
     end
   end
 
+  def destroy_confirm
+    @customer = current_customer
+  end
+
+  def destroy_customer
+    @customer = current_customer
+    if @customer.email == 'guest@example.com'
+      reset_session
+      redirect_to :root
+    else
+      @customer.update(is_valid: false)
+      reset_session
+      redirect_to :root
+    end
+  end
+
   private
   def customer_params
     params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :nickname, :email)

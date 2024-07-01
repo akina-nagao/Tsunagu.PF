@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">つなぐ</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,17 +7,15 @@
     <div class="navbar-nav">
       <% if current_customer %>
         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-item nav-link" %>
-
         <%= link_to "マイページ", mypage_path, class: "nav-item nav-link" %>
         <%= link_to "投稿", new_post_path, class: "nav-item nav-link" %>
         <%= link_to "活動一覧", posts_path, class: "nav-item nav-link" %>
-        <%= render "public/searches/form" %>
+        <%= render "public/searches/form"%>
       <% elsif current_admin %>
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-item nav-link" %>
       <% else %>
-        <%= link_to "ログイン", new_customer_session_path, class: "nav-item nav-link" %>
-        <%= link_to "アバウト", about_path, class: "nav-item nav-link" %>
         <%= link_to "ホーム", root_path, class: "nav-item nav-link" %>
+        <%= link_to "アバウト", about_path, class: "nav-item nav-link" %>
       <% end %>
     </div>
   </div>

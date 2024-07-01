@@ -28,10 +28,10 @@ class Public::PostsController < ApplicationController
     
     @post.customer_id = current_customer.id
     if @post.save
-      flash[:notice] = "success"
+      flash[:notice] = "投稿に成功しました"
       redirect_to posts_path
     else
-      flash.now[:alert] = "failed"
+      flash.now[:alert] = "投稿に失敗しました"
       render :new
     end
   end
@@ -57,7 +57,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      flash[:notice] = "You have updated post successfully."
+      flash[:notice] = "投稿の更新に成功しました"
       redirect_to post_path(@post.id)
     else
       render :edit
@@ -66,8 +66,11 @@ class Public::PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
-    redirect_to posts_path
+    if @post.customer != current_customer
+       redirect_to posts_path
+    else
+      @post.destroy
+    end
   end
 
 

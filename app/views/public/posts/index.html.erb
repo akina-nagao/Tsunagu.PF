@@ -1,21 +1,29 @@
-<h1>Public::Posts#index</h1>
-
-<% @posts.each do |post| %>
-  <div class="mt-4">
-    <%= link_to post_path(post.id) do %>
-      <p><%= image_tag 'sample-author1.jpg' %></p>
-    <% end %>
-    <p>活動名：<%= post.title %><p>
-    <p>活動内容：<%= post.body %></p>
-    <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>
+<h1 class="mt-2">活動一覧</h1>
+ <p>ここから始まる第2の人生</p>
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <% @posts.each do |post| %>
+        <div class="mx-auto" style="width: 200rem;">
+          <div class="card mt-4" style="width: 24rem;">
+            <div class="card-body">
+              <p class="card-text">
+                <%= link_to post_path(post.id) do %>
+                  <%= image_tag 'sample-author1.jpg' %>
+                <% end %>
+                <p>活動名：<%= post.title %></p>
+                <p>
+                  <%= post.comments.count %>コメント
+                  ｜
+                  <%= post.favorites.count %>いいね
+                </p>
+              </p>
+                <% if current_customer %>
+                  <%= render "public/post_members/post_member_button", post: post %>
+                  <%= render "public/favorites/favorite_button", post: post %>
+                <% end %>
+            </div>
+        </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-
-
-  <% if current_customer %>
-    <%= link_to "削除", post_path(post), method: :delete %>
-    <%= render "public/favorites/favorite_button", post: post %>
-    <%= render "public/post_members/post_member_button", post: post %>
-  <% end %>
-
-<% end %>
