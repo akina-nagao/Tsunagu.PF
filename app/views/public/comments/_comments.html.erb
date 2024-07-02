@@ -1,5 +1,6 @@
 <div class="mt-4">
-    <p>コメント件数：<%= post.comments.count %></p>
+    <p>コメント件数：<%= post.comments.count %> | いいね数：<%= post.favorites.count %></p>
+    <hr>
     <% post.comments.each do |comment| %>
       <% if comment.customer == current_customer %>
         ニックネーム｜<%= comment.customer.nickname %></br>

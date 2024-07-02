@@ -9,6 +9,7 @@ class Public::HomeController < ApplicationController
   
   def mypage
     @customer = current_customer
+    #byebug
     @post_members = @customer.applying_post_members
   end
   

@@ -1,6 +1,6 @@
 <h1>マイページ</h1>
-<%= image_tag @customer.get_profile_image(100,100) %>
-ニックネーム：<%= @customer.nickname %>
+<%= image_tag @customer.get_profile_image(100,200) %>
+ニックネーム：<%= @customer.nickname %></br><hr>
 
 <% @post_members.each do |post_member| %>
   customer_id：<%= post_member.customer.id %>：
@@ -8,8 +8,13 @@
   |
   <%= link_to "NG", post_member_path(post_member, status: :excluded), method: :patch, class: "btn btn-lg btn-danger" %>
   |
-  <%= post_member.post.title %><br>
+  活動名：<%= post_member.post.title %><br><hr>
 <% end %>
-<hr>
-<%= link_to "許可・NG者一覧", post_members_path(@post_member) %><br>
-<%= link_to "マイページ編集", edit_customer_path(@customer.id) %><br>
+
+<%= link_to post_members_path(@post_member), class: "btn btn-secondary" do %>
+  <i class="fa-solid fa-list">許可・NG者一覧</i>
+<% end %>
+<br>
+<%= link_to edit_customer_path(@customer.id), class: "btn btn-secondary mt-2" do %>
+  <i class="fa-solid fa-pen-to-square">マイページ編集</i>
+<% end %>

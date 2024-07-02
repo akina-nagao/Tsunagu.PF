@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">つなぐ</a>
+  <a class="navbar-brand" href="#">つなぐ<span><i class="fa-solid fa-handshake-simple"></i></span></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -15,7 +15,6 @@
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-item nav-link" %>
       <% else %>
         <%= link_to "ホーム", root_path, class: "nav-item nav-link" %>
-        <%= link_to "アバウト", about_path, class: "nav-item nav-link" %>
       <% end %>
     </div>
   </div>

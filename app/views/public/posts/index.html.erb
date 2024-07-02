@@ -1,29 +1,39 @@
-<h1 class="mt-2">活動一覧</h1>
- <p>ここから始まる第2の人生</p>
+    <h1 class="mt-2">活動一覧</h1>
+    <p>ここから新たな楽しみを</p>
   <div class="row">
-    <div class="col-md-4 offset-md-4">
-      <% @posts.each do |post| %>
-        <div class="mx-auto" style="width: 200rem;">
-          <div class="card mt-4" style="width: 24rem;">
-            <div class="card-body">
-              <p class="card-text">
+    <div class="col-md-4">
+      <%= render 'public/posts/form', post: @post %>
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <% @posts.each do |post| %>
+          <div class="col-sm-12 col-md-6">
+            <div class="card my-4">
+              <div class="card-img-top">
                 <%= link_to post_path(post.id) do %>
-                  <%= image_tag 'sample-author1.jpg' %>
+                  <% if post.image.attached? %>
+                    <%= image_tag post.get_image(348,300), style: "width:100%;" %>
+                  <% else %>
+                    <%= image_tag 'no_image', size: "348x300", style: "width:100%;" %>
+                  <% end %>
                 <% end %>
-                <p>活動名：<%= post.title %></p>
+              </div>
+              <div class="card-body">
+                <h4>活動名：<%= post.title %></h4>
                 <p>
                   <%= post.comments.count %>コメント
                   ｜
                   <%= post.favorites.count %>いいね
                 </p>
-              </p>
+
                 <% if current_customer %>
                   <%= render "public/post_members/post_member_button", post: post %>
                   <%= render "public/favorites/favorite_button", post: post %>
                 <% end %>
+              </div>
             </div>
-        </div>
-        </div>
-      <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>

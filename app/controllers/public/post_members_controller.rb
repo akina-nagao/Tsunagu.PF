@@ -1,4 +1,7 @@
 class Public::PostMembersController < ApplicationController
+  before_action :authenticate_customer!, only: [:create, :destroy, :update]
+  before_action :correct_user, only: [:update]
+  
   def new
     @post_member = Post_member.new
     @post_member.customers << current_customer
@@ -29,5 +32,11 @@ class Public::PostMembersController < ApplicationController
     @post_member.update(status: params[:status])
     redirect_back(fallback_location: root_url)
   end
-
+  
+  private
+  
+  def correct_user
+    @post_member = current_customer.post_members.find_by_id(params[:id])
+    redirect_to root_path if !@post_member
+  end
 end
