@@ -1,21 +1,37 @@
 @use '~bootstrap/scss/bootstrap';
 
 html {
-  font-size: 18.5px;
+  font-size: 24px;
 }
+
 
 body {
-  background-color: #fff4f9;
+  background-image: url('../images/tsunagu.jpg');
+  background-color: rgba(255,255,255,0.8);
+  background-blend-mode: lighten;
+  background-attachment: fixed;
 }
 
-.jumbotron {
+.main-visual {
   height: 90vh;
   background-image: url('../images/top3.img.jpg');
   background-size: cover;
 }
 
+.main-visual-content {
+  text-align: center;
+  padding-top: 20%;
+}
+
+
+.container {
+  background-color: #fff4f9;
+  height: 100%
+}
 
 
 .form-body {
   background-color: #fff9f9;
 }
+
+

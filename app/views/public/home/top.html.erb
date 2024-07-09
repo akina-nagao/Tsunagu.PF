@@ -1,15 +1,13 @@
 <%= content_for(:bg_area) do %>
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container h-100 d-flex">
-      <div class="my-auto">
-        <h1 class="d-flex justify-content-center">今をつなぐ為に</h1>
+ <div class="main-visual">
+   <div class="main-visual-content">
+      <h1 class="d-flex justify-content-center">今をつなぐ為に</h1>
         <div class="mt-4 d-flex justify-content-center">
           <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-primary  mr-4" %>
           <%= link_to "ログイン", new_customer_session_path, class: "btn btn-primary mr-4" %>
-          <%= link_to "ゲストログイン（閲覧用）", guest_sign_in_path, method: :post, class: "btn btn-primary" %>
+          <%= link_to "ゲストログイン(閲覧用)", guest_sign_in_path, method: :post, class: "btn btn-primary" %>
         </div>
         <h6 class="mt-4 d-flex justify-content-center">誰かとつながる楽しさを、またここから始めませんか？</h6>
-      </div>
-    </div>
-  </div>
+   </div>
+ </div>
 <% end %>

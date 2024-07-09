@@ -12,3 +12,18 @@
   活動名：<%= post_member.post.title %><br><hr>
 <% end %>
 
+ 
+ 
+  <div class="jumbotron jumbotron-fluid">
+    <div class="contaner h-100 d-flex">
+      <div class="my-auto">
+        <h1 class="d-flex justify-content-center">今をつなぐ為に</h1>
+        <div class="mt-4 d-flex justify-content-center">
+          <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-primary  mr-4" %>
+          <%= link_to "ログイン", new_customer_session_path, class: "btn btn-primary mr-4" %>
+          <%= link_to "ゲストログイン（閲覧用）", guest_sign_in_path, method: :post, class: "btn btn-primary" %>
+        </div>
+        <h6 class="mt-4 d-flex justify-content-center">誰かとつながる楽しさを、またここから始めませんか？</h6>
+      </div>
+    </div>
+  </div>

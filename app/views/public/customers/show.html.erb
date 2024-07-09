@@ -1,4 +1,4 @@
-<h1>会員情報</h1>
+<h1 class="pt-2">会員情報</h1>
 
 <div>
   <h3><%= @customer.name %></h3>
@@ -17,8 +17,8 @@
         <tbody>
           <% @customers.each do |customer| %>
             <%# @post_members.each do |post_member| %>
-                <%= render "public/post_members/post_members", post_members: @post_members %>
-                <%= render "public/post_members/post_members", post_members: @ng_post_members %>
+                <%#= render "public/post_members/post_members", post_members: @post_members %>
+                <%#= render "public/post_members/post_members", post_members: @ng_post_members %>
               <tr>
                 <td><%= post_member.customer.id %></td>
                 <td><%= post_member.customer.nickname %></td>

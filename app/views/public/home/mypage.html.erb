@@ -1,13 +1,13 @@
-<h1 class="mt-2">マイページ</h1>
+<h1 class="pt-2">マイページ</h1>
 <%= image_tag @customer.get_profile_image(100,200) %>
 ニックネーム：<%= @customer.nickname %></br><hr>
 
 <%= link_to post_members_path(@post_member), class: "btn btn-secondary" do %>
-  <i class="fa-solid fa-list">許可・NG者一覧</i>
+  <i class="fa-solid fa-list"> 許可・NG者一覧</i>
 <% end %>
 <br>
 <%= link_to edit_customer_path(@customer.id), class: "btn btn-secondary mt-2" do %>
-  <i class="fa-solid fa-pen-to-square">マイページ編集</i>
+  <i class="fa-solid fa-pen-to-square"> マイページ編集</i>
 <% end %>
 
 <table class="table mt-4">
