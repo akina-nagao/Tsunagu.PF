@@ -26,8 +26,8 @@
       <td><%= post_member.customer.id %></td>
       <td>活動名：<%= post_member.post.title %></td>
       <td>
-        <%= link_to "許可", post_member_path(post_member, status: :permitted), method: :patch, class: "btn btn-lg btn-primary"  %>
-        |
+        <%= link_to "許可", post_member_path(post_member, status: :permitted), method: :patch, class: "btn btn-lg btn-primary mr-2"  %>
+        
         <%= link_to "NG", post_member_path(post_member, status: :excluded), method: :patch, class: "btn btn-lg btn-danger" %>
       </td>
     </tr>

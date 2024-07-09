@@ -12,8 +12,6 @@ class Public::HomeController < ApplicationController
     @post_members = @customer.applying_post_members
     
     @customers = Customer.all
-    @post = Post.all
-    @posts= Post.all
   end
   
   def guest_sign_in

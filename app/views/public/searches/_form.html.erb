@@ -1,6 +1,6 @@
 <% if customer_signed_in? %>
   <%= form_with url: posts_path, method: :get do |f| %>
-    <%= f.search_field :keyword, value: params[:keyword] %>
+    <%= f.search_field :keyword, value: params[:keyword], placeholder: "活動名や投稿者を検索" %>
     <%= f.submit "検索" %>
   <% end %>
 <% end %>

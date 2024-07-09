@@ -1,7 +1,7 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_customer!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_customer!, only: [:new, :create, :edit, :update, :show, :destroy]
   before_action :correct_user, only: [:edit, :update, :destroy]
-  
+
   def new
     @post = Post.new
     @tag = Tag.new
@@ -9,7 +9,7 @@ class Public::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    
+
     @post.customer_id = current_customer.id
     if @post.save
       flash[:notice] = "投稿に成功しました"
@@ -24,25 +24,24 @@ class Public::PostsController < ApplicationController
   def index
     @customer = current_customer
     @post = Post.new
-    @posts = Post.all
+    @posts = Post.joins(:customer)
     if params[:keyword].present?
       @posts = @posts.where('title LIKE ?', "%#{params[:keyword]}%")
               .or(@posts.where('body LIKE ?', "%#{params[:keyword]}%"))
-              #.or(@customers.where('nickname LIKE ?', "%#{params[:keyward]}%"))
-      #@customers = @customers.where('nickname LIKE ?', "%#{params[:keyward]}%")
+              .or(@posts.where('customers.nickname LIKE ?', "%#{params[:keyword]}%" ))
     end
   end
 
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    
+    @comments = @post.comments
   end
 
   def edit
 
   end
-  
+
   def update
     if @post.update(post_params)
       flash[:notice] = "投稿の更新に成功しました"
@@ -63,7 +62,7 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title, :body, :image, :tag_name)
   end
-  
+
   def correct_user
     @post = current_customer.posts.find_by_id(params[:id])
     redirect_to root_path if !@post

@@ -36,7 +36,7 @@ class Public::PostMembersController < ApplicationController
   private
   
   def correct_user
-    @post_member = current_customer.post_members.find_by_id(params[:id])
-    redirect_to root_path if !@post_member
+    @post_member = PostMember.find_by_id(params[:id])
+    redirect_to root_path if @post_member.post.customer != current_customer
   end
 end
