@@ -9,14 +9,16 @@ class Public::HomeController < ApplicationController
   
   def mypage
     @customer = current_customer
-    #byebug
     @post_members = @customer.applying_post_members
+    
+    @customers = Customer.all
+    @post = Post.all
+    @posts= Post.all
   end
   
   def guest_sign_in
     customer = Customer.find_or_create_by!(email: 'guest@example.com') do |customer|
       customer.password = SecureRandom.urlsafe_base64
-      #customer.skip_confirmation!
       customer.nickname = "ゲスト"
     end
     sign_in customer

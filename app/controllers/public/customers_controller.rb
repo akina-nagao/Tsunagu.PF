@@ -1,8 +1,10 @@
 class Public::CustomersController < ApplicationController
-
   def show
     @customer = Customer.find(params[:id])
     @posts = @customer.posts
+    #if params[:keyword].present?
+    #  @posts = @customers.where('nickname LIKE ?', "%#{params[:keyward]}%")
+    #end
   end
 
   def edit

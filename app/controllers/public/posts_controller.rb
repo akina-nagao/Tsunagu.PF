@@ -22,11 +22,14 @@ class Public::PostsController < ApplicationController
   end
 
   def index
+    @customer = current_customer
     @post = Post.new
     @posts = Post.all
     if params[:keyword].present?
       @posts = @posts.where('title LIKE ?', "%#{params[:keyword]}%")
               .or(@posts.where('body LIKE ?', "%#{params[:keyword]}%"))
+              #.or(@customers.where('nickname LIKE ?', "%#{params[:keyward]}%"))
+      #@customers = @customers.where('nickname LIKE ?', "%#{params[:keyward]}%")
     end
   end
 
@@ -51,7 +54,7 @@ class Public::PostsController < ApplicationController
 
   def destroy
     @post.destroy if @post
-    flash[:notice] = "削除しました。'"
+    flash[:notice] = "投稿を削除しました。"
     redirect_to posts_path
   end
 

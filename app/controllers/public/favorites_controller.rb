@@ -6,6 +6,10 @@ class Public::FavoritesController < ApplicationController
     current_customer.favorite(post)
     redirect_back(fallback_location: root_url)
   end
+  
+  def index
+    favorites = current_customer.favorites
+  end
 
   def destroy
     post = Post.find(params[:post_id])

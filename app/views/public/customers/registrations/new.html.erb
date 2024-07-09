@@ -4,28 +4,28 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "layouts/error_messages", model: resource %>
     <div class="field">
-      <%= f.label :メールアドレス %><br />
+      <%= f.label :必須　メールアドレス %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
-  
+
     <div class="field mt-2">
-      <%= f.label :パスワード %>
+      <%= f.label :必須　パスワード %>
       <% if @minimum_password_length %>
       <em>（<%= @minimum_password_length %>文字以上）</em>
       <% end %><br />
       <%= f.password_field :password, autocomplete: "new-password" %>
     </div>
-  
+
     <div class="field mt-2">
-      <%= f.label :確認用パスワード %><br />
+      <%= f.label :必須　確認用パスワード %><br />
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
-  
+
     <div class="field mt-2">
       <%= f.label :ニックネーム %><br/>
       <%= f.text_field :nickname, autocomplete: "new-nickname" %>
     </div>
-  
+
     <div class="actions mt-2">
       <%= f.submit "登録", class: "btn btn-lg btn-primary" %>
     </div>

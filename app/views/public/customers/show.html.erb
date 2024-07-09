@@ -1,6 +1,32 @@
-<h1>Public::Customers#show</h1>
+<h1>会員情報</h1>
 
 <div>
   <h3><%= @customer.name %></h3>
   <%= image_tag @customer.get_profile_image(100,100) %>
 </div>
+
+      <h2>参加者一覧</h2>
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th>申請者ID</th>
+            <th>申請者ニックネーム</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+            <%# @post_members.each do |post_member| %>
+                <%= render "public/post_members/post_members", post_members: @post_members %>
+                <%= render "public/post_members/post_members", post_members: @ng_post_members %>
+              <tr>
+                <td><%= post_member.customer.id %></td>
+                <td><%= post_member.customer.nickname %></td>
+                <td><%= link_to "許可する", post_member_path(post_member, status: :permitted), method: :patch, class: "btn btn-lg btn-primary"  %></td>
+                <td><%= link_to "NG", post_member_path(post_member, status: :excluded), method: :patch, class: "btn btn-lg btn-danger" %></td>
+                <td>活動名：<%= post_member.post.title %></td>
+              </tr>
+            <%# end %>
+          <% end %>
+        </tbody>
+      </table>

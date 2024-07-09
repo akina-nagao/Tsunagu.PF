@@ -1,5 +1,12 @@
 @use '~bootstrap/scss/bootstrap';
 
+html {
+  font-size: 18.5px;
+}
+
+body {
+  background-color: #fff4f9;
+}
 
 .jumbotron {
   height: 90vh;
@@ -7,7 +14,8 @@
   background-size: cover;
 }
 
-body {
-  background-color: #f4f4f4;
-}
 
+
+.form-body {
+  background-color: #fff9f9;
+}

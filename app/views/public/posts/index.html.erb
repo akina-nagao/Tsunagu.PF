@@ -1,14 +1,18 @@
-    <h1 class="mt-2">活動一覧</h1>
-    <p>ここから新たな楽しみを</p>
+  <h1 class="mt-2">活動一覧</h1>
+  <p>ここから新たな人生を</p>
   <div class="row">
     <div class="col-md-4">
-      <%= render 'public/posts/form', post: @post %>
+      <div class="col-sm-12 mx-2 mx-sm-auto shadow-lg rounded px-0 my-4">
+        <div class="form-body p-4">
+          <%= render 'public/posts/form', post: @post %>
+        </div>
+      </div>
     </div>
     <div class="col-md-8">
       <div class="row">
         <% @posts.each do |post| %>
           <div class="col-sm-12 col-md-6">
-            <div class="card my-4">
+            <div class="card my-4 shadow-lg">
               <div class="card-img-top">
                 <%= link_to post_path(post.id) do %>
                   <% if post.image.attached? %>
@@ -25,11 +29,12 @@
                   ｜
                   <%= post.favorites.count %>いいね
                 </p>
-
-                <% if current_customer %>
+                <% if current_customer%>
                   <%= render "public/post_members/post_member_button", post: post %>
                   <%= render "public/favorites/favorite_button", post: post %>
                 <% end %>
+                <br>
+                投稿者<%= post.customer.nickname %>
               </div>
             </div>
           </div>
