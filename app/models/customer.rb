@@ -11,7 +11,7 @@ class Customer < ApplicationRecord
   has_many :post_members, dependent: :destroy
   has_many :member_posts, through: :post_members, source: :post
   has_one_attached :profile_image
-  #validates :nickname, presence: true
+  validates :nickname, presence: true, length: { maximum: 20 }
 
   def favorite(post)
     self.favorites.find_or_create_by(post_id: post.id)
