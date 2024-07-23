@@ -1,0 +1,6 @@
+<%= form_with url: mails_post_members_path do |f| %>
+  <%= f.hidden_field :post_id, value: @post.id %>
+  <%= f.text_field :title, value: params[:title] %><br>
+  <%= f.text_area :message, value: params[:message] %><br>
+  <%= f.submit %>
+<% end %>
