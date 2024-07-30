@@ -41,7 +41,7 @@ class Public::PostMembersController < ApplicationController
     @post = Post.find(params[:post_id])
     @title = params[:title]
     @message = params[:message]
-    @members = Customer.includes(:post_members).where("post_members.status": :permitted, "post_memgers.post_id": @post.id)
+    @members = Customer.includes(:post_members).where("post_members.status": :permitted, "post_members.post_id": @post.id)
     @members.each do |member|
       GroupMailer.send_group_members(@post, @title, @message, member).deliver
     end

@@ -4,6 +4,6 @@ class GroupMailer < ApplicationMailer
     @title = title
     @message = message
     @member = member
-    mail to: @member.email, subject: "#{@post}.title"
+    mail to: @member.email, subject: "#{@post.title}からのメールです"
   end
 end
