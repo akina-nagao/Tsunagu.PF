@@ -1,6 +1,13 @@
+<h2>メール送信画面</h2>
 <%= form_with url: mails_post_members_path do |f| %>
-  <%= f.hidden_field :post_id, value: @post.id %>
-  <%= f.text_field :title, value: params[:title] %><br>
-  <%= f.text_area :message, value: params[:message] %><br>
-  <%= f.submit %>
+　<div class="field">
+    <%= f.hidden_field :post_id, value: @post.id %>
+  </div>
+  <div class="field">
+    <%= f.text_field :title, value: params[:title], placeholder: "件名" %><br>
+  </div>
+  <div class="field mt-2">
+    <%= f.text_area :message, value: params[:message], placeholder: "メールを作成" %><br>
+  </div>
+  <%= f.submit 'メールを送信する', class: "btn btn-lg btn-primary mt-4" %>
 <% end %>
