@@ -45,7 +45,7 @@ class Public::PostMembersController < ApplicationController
     @members.each do |member|
       GroupMailer.send_group_members(@post, @title, @message, member).deliver
     end
-    flash[:success] = "mailer sended"
+    flash[:success] = "メールを送信しました"
     redirect_to post_path(@post)
   end
 
