@@ -1,12 +1,13 @@
 <div class="mt-4">
-    <p>コメント件数：<%= comments.count %> | いいね数：<%= post.favorites.count %></p>
+    <p>コメント件数：<%= comments.count %> | いいね数：<%= post.favorites&.count || 0 %></p>
     <hr>
     <% comments.each do |comment| %>
       <%= image_tag comment.customer.get_profile_image(100,100) %>
       ニックネーム｜<%= comment.customer.nickname %></br>
       <%#= image_tag comment.get_image(200,200) %></br>
       <%= comment.comment %></br>
-      <%= comment.created_at.strftime('%Y:%M:%D') %>
+      <%#= comment.created_at.strftime('%Y:%m:%d') %>
+      <%= l comment.created_at, format: :short %>
       <% if comment.customer == current_customer %>
         <%= link_to "削除", post_comment_path(comment.post, comment), method: :delete, class: "btn btn-outline-secondary btn-sm", "data-confirm" => "本当に削除しますか？", class: "btn btn-outline-secondary mt-2" %>
       <% end %>

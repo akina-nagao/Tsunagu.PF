@@ -10,6 +10,7 @@ class Public::CommentsController < ApplicationController
       flash[:notice] = "コメントに成功しました"
       redirect_to post_path(@post)
     else
+      @comments = @post.comments.order(created_at: :desc)
       flash.now[:alert] = "コメントに失敗しました"
       render "public/posts/show"
     end

@@ -41,12 +41,17 @@ class Public::PostMembersController < ApplicationController
     @post = Post.find(params[:post_id])
     @title = params[:title]
     @message = params[:message]
-    @members = Customer.includes(:post_members).where("post_members.status": :permitted, "post_members.post_id": @post.id)
-    @members.each do |member|
-      GroupMailer.send_group_members(@post, @title, @message, member).deliver
+    if @title.present? && @message.present?
+      @members = Customer.includes(:post_members).where("post_members.status": :permitted, "post_members.post_id": @post.id)
+      @members.each do |member|
+        GroupMailer.send_group_members(@post, @title, @message, member).deliver
+      end
+      flash[:success] = "メールを送信しました"
+      redirect_to post_path(@post)
+    else
+      flash.now[:alert] = "メールの送信に失敗しました。"
+      render :new_mail
     end
-    flash[:success] = "メールを送信しました"
-    redirect_to post_path(@post)
   end
 
   private

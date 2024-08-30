@@ -30,12 +30,14 @@ class Public::PostsController < ApplicationController
               .or(@posts.where('body LIKE ?', "%#{params[:keyword]}%"))
               .or(@posts.where('customers.nickname LIKE ?', "%#{params[:keyword]}%" ))
     end
+    @posts = @posts.order(created_at: :desc)
+
   end
 
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
-    @comments = @post.comments
+    @comments = @post.comments.order(created_at: :desc)
   end
 
   def edit

@@ -34,7 +34,8 @@
                   <%= render "public/favorites/favorite_button", post: post %>
                 <% end %>
                 <br>
-                投稿者:<%= post.customer.nickname %>
+                投稿者:<%= post.customer.nickname %><br>
+                投稿日:<%= l post.created_at, format: :short %>
               </div>
             </div>
           </div>
