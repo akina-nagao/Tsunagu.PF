@@ -49,7 +49,7 @@ class Public::PostMembersController < ApplicationController
       flash[:success] = "メールを送信しました"
       redirect_to post_path(@post)
     else
-      flash.now[:alert] = "メールの送信に失敗しました。"
+      flash.now[:alert] = "メールの送信に失敗しました"
       render :new_mail
     end
   end
