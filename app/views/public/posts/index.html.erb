@@ -9,37 +9,13 @@
       </div>
     </div>
     <div class="col-md-8">
+      <h3>人気のタグ</h3>
+      <%= link_to "すべて", posts_path, class: "badge badge-secondary" %>
+      <%= render 'public/tags/tags', tags: Tag.joins(:post_tags).group('post_tags.tag_id').order('count(post_tags.tag_id) desc').limit(10) %> 
       <div class="row">
-        <% @posts.each do |post| %>
-          <div class="col-sm-12 col-md-6">
-            <div class="card my-4 shadow-lg">
-              <div class="card-img-top">
-                <%= link_to post_path(post.id) do %>
-                  <% if post.image.attached? %>
-                    <%= image_tag post.get_image(348,300), style: "width:100%;" %>
-                  <% else %>
-                    <%= image_tag 'no_image', size: "348x300", style: "width:100%;" %>
-                  <% end %>
-                <% end %>
-              </div>
-              <div class="card-body">
-                <h4>活動名：<%= post.title %></h4>
-                <p>
-                  <%= post.comments.count %>コメント
-                  ｜
-                  <%= post.favorites.count %>いいね
-                </p>
-                <% if current_customer%>
-                  <%= render "public/post_members/post_member_button", post: post %>
-                  <%= render "public/favorites/favorite_button", post: post %>
-                <% end %>
-                <br>
-                投稿者:<%= post.customer.nickname %><br>
-                投稿日:<%= l post.created_at, format: :short %>
-              </div>
-            </div>
-          </div>
-        <% end %>
+        <%# @posts.each do |post| %>
+          <%= render @posts %>
+        <%# end %>
       </div>
     </div>
   </div>

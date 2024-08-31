@@ -1,25 +1,29 @@
-<div class="row">
-  <div class="col-md-4">
-    <div class="col-md-3 col-sm-10 mx-2 mx-sm-auto shadow-lg rounded px-0 my-5">
-      <h4 class="text-dark bg-light p-4 mb-0"></h4>
-      <div class="form-body p-4">
-        <%= form_with model: @post do |f| %>
-          <%= render 'layouts/error_messages', model: f.object %>
-          <div class="input-group mb-3 mt-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>
-            </div>
-            <%= f.text_field :title, class: "form-control", placeholder: "活動名" %>
-          </div>
-            <%= f.text_area :body, class: "form-control", rows: "4", placeholder: "活動内容" %>
-            <hr>
-            <%= f.file_field :image, accept: "image/*", class: "w-100 mb-3" %>
-  
-            <%= f.text_field :tag_name, class: "form-control", placeholder: "タグ（,区切りで入力してください)" %>
-  
-            <%= f.submit '投稿', class: "btn btn-lg btn-block btn-primary mt-4" %>
+<div class="col-sm-12 col-md-6">
+  <div class="card my-4 shadow-lg">
+    <div class="card-img-top">
+      <%= link_to post_path(post.id) do %>
+        <% if post.image.attached? %>
+          <%= image_tag post.get_image(348,300), style: "width:100%;" %>
+        <% else %>
+          <%= image_tag 'no_image', size: "348x300", style: "width:100%;" %>
         <% end %>
-      </div>
+      <% end %>
+    </div>
+    <div class="card-body">
+      <h4>活動名：<%= post.title %></h4>
+      <p>
+        <%= post.comments.count %>コメント
+        ｜
+        <%= post.favorites.count %>いいね
+      </p>
+      <% if current_customer%>
+        <%= render "public/post_members/post_member_button", post: post %>
+        <%= render "public/favorites/favorite_button", post: post %>
+      <% end %>
+      <br>
+      投稿者:<%= post.customer.nickname %><br>
+      投稿日:<%= l post.created_at, format: :short %><br>
+      タグ:<%= render "public/tags/tags", tags: Tag.where(id: post.tags.pluck(:tag_id)) %>
     </div>
   </div>
 </div>

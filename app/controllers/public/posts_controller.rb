@@ -30,6 +30,7 @@ class Public::PostsController < ApplicationController
               .or(@posts.where('body LIKE ?', "%#{params[:keyword]}%"))
               .or(@posts.where('customers.nickname LIKE ?', "%#{params[:keyword]}%" ))
     end
+    @posts = @posts.includes(:tags).where('tags.id': params[:tag_id]) if params[:tag_id].present?
     @posts = @posts.order(created_at: :desc)
 
   end
