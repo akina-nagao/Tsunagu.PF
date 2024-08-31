@@ -16,6 +16,7 @@ class Public::PostsController < ApplicationController
       redirect_to posts_path
     else
       @posts = Post.all
+      #@posts = @posts.page(params[:page])
       flash.now[:alert] = "投稿に失敗しました"
       render :index
     end
@@ -32,7 +33,7 @@ class Public::PostsController < ApplicationController
     end
     @posts = @posts.includes(:tags).where('tags.id': params[:tag_id]) if params[:tag_id].present?
     @posts = @posts.order(created_at: :desc)
-
+    #@posts = @posts.page(params[:page])
   end
 
   def show
