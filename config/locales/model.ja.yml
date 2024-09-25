@@ -5,6 +5,6 @@ ja:
 
     attributes:
       customer:
-        email: e-mail
+        email: メールアドレス
         password: パスワード
         nickname: ニックネーム
