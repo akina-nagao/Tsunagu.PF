@@ -73,3 +73,5 @@ gem 'net-imap'
 group :development do
   gem 'letter_opener_web'
 end
+
+gem 'kaminari','~>1.2.1'
